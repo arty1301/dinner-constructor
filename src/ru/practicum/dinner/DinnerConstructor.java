@@ -25,11 +25,27 @@ public class DinnerConstructor {
         System.out.println("Блюдо добавлено: " + dishType + " - " + dishName);
     }
 
-    public ArrayList<String> generateCombinations(numberOfCombos, ){
+    public ArrayList<ArrayList<String>> generateCombinations(int numberOfCombinations, ArrayList<String> types) {
+        ArrayList<ArrayList<String>> combinations = new ArrayList<>();
 
+        for (int i = 0; i < numberOfCombinations; i++) {
+            ArrayList<String> combination = new ArrayList<>();
+            for(String type : types){
+                ArrayList<String> dishes = dishesType.get(type);
+                if (!dishes.isEmpty()){
+                    int randomKey = random.nextInt(dishes.size());
+                    String randomDish = dishes.get(randomKey);
+                    combination.add(randomDish);
+                } else {
+                    System.out.println("Блюда нет");
+                }
+                combinations.add(combination);
+            }
+        }
+        return combinations;
     }
 
-    public boolean checkType(String type){
+    public boolean checkType(String type) {
         return dishesType.containsKey(type);
     }
 }
