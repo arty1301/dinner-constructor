@@ -54,12 +54,26 @@ public class Main {
         scanner.nextLine();
 
         System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
-        String nextItem = scanner.nextLine();
+
 
         ArrayList<String> typesDishes = new ArrayList<>();
         //реализуйте ввод типов блюд
-        while (!nextItem.isEmpty()) {
-        typesDishes.add(nextItem);
+        while (true) {
+            String nextItem = scanner.nextLine();
+            if (nextItem.isEmpty()) {
+                break;
+            }
+            if (dc.checkType(nextItem)) {
+                typesDishes.add(nextItem);
+            } else {
+                System.out.println("Такого типа блюда не найдено. Пропробуйте ввести другой тип");
+            }
+        }
+
+        ArrayList<ArrayList<String>> combinations = dc.generateCombinations(numberOfCombos, typesDishes);
+
+        for (ArrayList<String> combo : combinations) {
+            System.out.println("Комбо: " + combo);
         }
 
         // сгенерируйте комбинации блюд и выведите на экран
