@@ -30,17 +30,17 @@ public class DinnerConstructor {
 
         for (int i = 0; i < numberOfCombinations; i++) {
             ArrayList<String> combination = new ArrayList<>();
-            for(String type : types){
+            for (String type : types) {
                 ArrayList<String> dishes = dishesType.get(type);
-                if (!dishes.isEmpty()){
+                if (!dishes.isEmpty()) {
                     int randomKey = random.nextInt(dishes.size());
                     String randomDish = dishes.get(randomKey);
                     combination.add(randomDish);
                 } else {
                     System.out.println("Блюда нет");
                 }
-                combinations.add(combination);
             }
+            combinations.add(combination);
         }
         return combinations;
     }
